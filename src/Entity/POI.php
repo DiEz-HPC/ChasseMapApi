@@ -9,7 +9,10 @@ use Doctrine\ORM\Mapping as ORM;
 use App\Model\MarkerInterface;
 
 #[ORM\Entity(repositoryClass: POIRepository::class)]
-#[ApiResource]
+#[ApiResource(
+    collectionOperations: ['get', 'post'],
+    itemOperations: ['get'],
+)]
 class POI implements MarkerInterface
 {
     #[ORM\Id]

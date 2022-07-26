@@ -9,7 +9,10 @@ use Doctrine\ORM\Mapping as ORM;
 use App\Model\MarkerInterface;
 
 #[ORM\Entity(repositoryClass: HunterRepository::class)]
-#[ApiResource]
+#[ApiResource(
+    collectionOperations: ['get', 'post'],
+    itemOperations: ['get'],
+)]
 class Hunter implements MarkerInterface
 {
     #[ORM\Id]

@@ -10,7 +10,10 @@ use Doctrine\ORM\Mapping as ORM;
 use App\Model\MarkerInterface;
 
 #[ORM\Entity(repositoryClass: ObstacleRepository::class)]
-#[ApiResource]
+#[ApiResource(
+    collectionOperations: ['get', 'post'],
+    itemOperations: ['get'],
+)]
 class Obstacle implements MarkerInterface
 {
     #[ORM\Id]
