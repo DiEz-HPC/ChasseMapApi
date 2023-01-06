@@ -15,7 +15,7 @@ RUN composer install \
     --no-scripts \
     --prefer-dist \
     --quiet
-RUN composer require doctrine/doctrine-fixtures-bundle --dev
+
 FROM php:8.1-fpm-alpine as phpserver
 
 # add cli tools
