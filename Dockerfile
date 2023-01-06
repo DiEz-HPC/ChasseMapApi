@@ -15,6 +15,7 @@ RUN composer install \
     --no-scripts \
     --prefer-dist \
     --quiet
+RUN composer require --dev orm-fixtures
 
 FROM php:8.1-fpm-alpine as phpserver
 
