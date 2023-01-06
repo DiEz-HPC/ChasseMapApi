@@ -1,11 +1,6 @@
 #!/bin/sh
 set -e
 
-curl -sS https://getcomposer.org/installer | php
-mv composer.phar /usr/local/bin/composer
-
-composer install
-
 ## Symfony configuration
 if [ ${APP_ENV} != "prod" ]; then
   php bin/console doctrine:database:drop --force --quiet --if-exists --no-interaction
