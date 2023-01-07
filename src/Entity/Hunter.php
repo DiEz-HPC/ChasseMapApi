@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
+use App\Controller\MarkerController;
 use App\Repository\HunterRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
@@ -10,8 +11,39 @@ use App\Model\MarkerInterface;
 
 #[ORM\Entity(repositoryClass: HunterRepository::class)]
 #[ApiResource(
-    collectionOperations: ['get', 'post'],
-    itemOperations: ['get'],
+    collectionOperations: [
+        'get',
+        'post',
+        'handle' => [
+            'method' => 'GET',
+            'path' => '/hunters/{lat}/{long}',
+            'controller' => MarkerController::class,
+            'read' => false,
+            'openapi_context' => [
+                'parameters' => [
+                    [
+                        'name' => 'lat',
+                        'in' => 'path',
+                        'required' => true,
+                        'schema' => [
+                            'type' => 'string',
+                        ],
+                    ],
+                    [
+                        'name' => 'long',
+                        'in' => 'path',
+                        'required' => true,
+                        'schema' => [
+                            'type' => 'string',
+                        ],
+                    ],
+                ],
+            ],
+        ],
+    ],
+    itemOperations: [
+        'get',
+    ],
 )]
 class Hunter implements MarkerInterface
 {
