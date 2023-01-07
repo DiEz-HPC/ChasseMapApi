@@ -16,24 +16,24 @@ class HunterFixtures extends Fixture
         ];
         $coordonnée = [
             [
-            "latitude" => 47.993905448634905, 
-            "longitude" => 2.069435859776751
+                "latitude" => 47.993905448634905,
+                "longitude" => 2.069435859776751
             ],
             [
-            "latitude" => 47.99950369398146,
-            "longitude" => 2.096086288386268
+                "latitude" => 47.99950369398146,
+                "longitude" => 2.096086288386268
             ],
             [
-            "latitude" => 48.00475687868963,
-            "longitude" => 2.059607845033345
+                "latitude" => 48.00475687868963,
+                "longitude" => 2.059607845033345
             ],
             [
-            "latitude" => 48.000000000000000,
-            "longitude" => 2.000000000000000
+                "latitude" => 48.000000000000000,
+                "longitude" => 2.000000000000000
             ],
             [
-            "latitude" => 48.02066495256024, 
-            "longitude" => 2.0569045794465373
+                "latitude" => 48.02066495256024,
+                "longitude" => 2.0569045794465373
             ],
             [
                 "latitude" => 48.02097342256024,
@@ -56,7 +56,7 @@ class HunterFixtures extends Fixture
                 "longitude" => 1.958441734313965
             ]
         ];
-        for ($i=0; $i < 10; $i++) { 
+        for ($i = 0; $i < 10; $i++) {
             $hunter = new Hunter();
             $hunter->setLatitude($coordonnée[$i]['latitude']);
             $hunter->setLongitude($coordonnée[$i]['longitude']);
@@ -65,7 +65,7 @@ class HunterFixtures extends Fixture
             $hunter->setRadius(rand(1, 10));
             $manager->persist($hunter);
         }
-       
+
 
         $manager->flush();
     }
