@@ -15,8 +15,8 @@ use Symfony\Component\Validator\Constraints as Assert;
         'get',
         'post',
         'handle' => [
-            'method' => 'GET',
-            'path' => '/reported/{lat}/{long}',
+            'method' => 'POST',
+            'path' => '/reported/{email}/{name}/{comment}',
             'controller' => ReportedPromblemController::class,
             'read' => false,
 
