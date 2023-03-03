@@ -5,7 +5,6 @@ namespace App\Entity;
 use App\Repository\ReportedProblemRepository;
 use Doctrine\DBAL\Types\Types;
 use ApiPlatform\Core\Annotation\ApiResource;
-use App\Controller\ReportedPromblemController;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -17,9 +16,7 @@ use Symfony\Component\Validator\Constraints as Assert;
         'handle' => [
             'method' => 'POST',
             'path' => '/reported/{email}/{name}/{comment}',
-            'controller' => ReportedPromblemController::class,
             'read' => false,
-
         ],
     ],
     itemOperations: [
