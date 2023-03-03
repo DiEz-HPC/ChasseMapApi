@@ -27,6 +27,6 @@ class MarkerController extends AbstractController
             ->getQuery()
             ->getResult();
 
-            return $this->json($markers);
+        return $this->json($markers);
     }
 }
