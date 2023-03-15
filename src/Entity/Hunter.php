@@ -13,7 +13,6 @@ use App\Model\MarkerInterface;
 #[ApiResource(
     collectionOperations: [
         'get',
-        'post',
         'handle' => [
             'method' => 'GET',
             'path' => '/hunters/{lat}/{long}',
@@ -43,6 +42,7 @@ use App\Model\MarkerInterface;
     ],
     itemOperations: [
         'get',
+        'patch'
     ],
 )]
 class Hunter implements MarkerInterface
