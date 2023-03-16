@@ -13,6 +13,7 @@ use App\Model\MarkerInterface;
 #[ApiResource(
     collectionOperations: [
         'post',
+        'get',
         'handle' => [
             'method' => 'GET',
             'path' => '/hunters/{lat}/{long}',
