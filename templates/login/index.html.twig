@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Login
+{% endblock %}
+
+{% block body %}
+	<div class="example-wrapper">
+		<form action="{{ path('app_login') }}" method="post" class="w-100">
+			<div>
+
+				<label for="username" class="mt-3">Email</label>
+				<input type="text" id="username" name="_username" value="{{ last_username }}" class="form-control" required>
+
+				<label for="password" class="mt-4">Mot de passe</label>
+				<input type="password" id="password" name="_password" class="form-control" required>
+
+				<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+				<input type="hidden" name="_target_path" value="/">
+				<button type="submit">
+					Se connecter
+				</button>
+			</div>
+		</div>
+	</form>
+</div>{% endblock %}
