@@ -11,6 +11,12 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 
 class UserCrudController extends AbstractCrudController
 {
+
+    public const ROLES = [
+        "ROLE_ADMIN" => "Administrateur",
+        "ROLE_MEMBER" => "Member",
+    ];
+
     public static function getEntityFqcn(): string
     {
         return User::class;
@@ -31,9 +37,10 @@ class UserCrudController extends AbstractCrudController
     {
         return [
             IdField::new('id')
-            ->hideOnForm(),
+                ->hideOnForm(),
             TextField::new('email'),
             ArrayField::new('roles')
+
         ];
     }
 }

@@ -16,10 +16,10 @@ class HunterCrudController extends AbstractCrudController
     public function configureCrud(Crud $crud): Crud
     {
         return $crud
-            ->setEntityLabelInPlural('Hunter')
-            ->setEntityLabelInSingular('Hunter')
+            ->setEntityLabelInPlural('Point')
+            ->setEntityLabelInSingular('Point')
 
-            ->setPageTitle('index', 'Chasse map - Administration des Hunters')
+            ->setPageTitle('index', 'Chasse map - Administration des points de chasse')
             ->setPaginatorPageSize('10');
     }
 
