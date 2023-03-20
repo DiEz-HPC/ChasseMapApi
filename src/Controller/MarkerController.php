@@ -16,7 +16,7 @@ class MarkerController extends AbstractController
     public function __invoke($lat, $long)
     {
         // Limit in meters
-        $limit = 5000;
+        $limit = 50000;
 
         $markers =  $this->hunterRepository->createQueryBuilder('h')
             ->select('h, ST_Distance_Sphere(POINT(h.latitude, h.longitude), POINT(:lat, :long)) as distance')
