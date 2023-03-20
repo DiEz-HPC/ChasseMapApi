@@ -4,7 +4,6 @@ namespace App\Controller\Admin;
 
 use App\Entity\POI;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
-
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 
 class POICrudController extends AbstractCrudController
@@ -17,11 +16,11 @@ class POICrudController extends AbstractCrudController
     public function configureCrud(Crud $crud): Crud
     {
         return $crud
-        ->setEntityLabelInPlural('POI')
-        ->setEntityLabelInSingular('POI')
-    
-        ->setPageTitle('index', 'Chasse map - Administration des POI')
-        ->setPaginatorPageSize('10');
+            ->setEntityLabelInPlural('POI')
+            ->setEntityLabelInSingular('POI')
+
+            ->setPageTitle('index', 'Chasse map - Administration des POI')
+            ->setPaginatorPageSize('10');
     }
 
 

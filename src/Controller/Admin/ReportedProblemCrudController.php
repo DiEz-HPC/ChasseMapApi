@@ -4,7 +4,6 @@ namespace App\Controller\Admin;
 
 use App\Entity\ReportedProblem;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
-
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 
 class ReportedProblemCrudController extends AbstractCrudController
@@ -17,11 +16,11 @@ class ReportedProblemCrudController extends AbstractCrudController
     public function configureCrud(Crud $crud): Crud
     {
         return $crud
-        ->setEntityLabelInPlural('Problème')
-        ->setEntityLabelInSingular('Problème')
-    
-        ->setPageTitle('index', 'Chasse map - Gestion des questions-Help')
-        ->setPaginatorPageSize('10');
+            ->setEntityLabelInPlural('Problème')
+            ->setEntityLabelInSingular('Problème')
+
+            ->setPageTitle('index', 'Chasse map - Gestion des questions-Help')
+            ->setPaginatorPageSize('10');
     }
 
 

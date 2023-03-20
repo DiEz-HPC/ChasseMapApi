@@ -4,7 +4,6 @@ namespace App\Controller\Admin;
 
 use App\Entity\Obstacle;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
-
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 
 class ObstacleCrudController extends AbstractCrudController
@@ -17,11 +16,11 @@ class ObstacleCrudController extends AbstractCrudController
     public function configureCrud(Crud $crud): Crud
     {
         return $crud
-        ->setEntityLabelInPlural('Obstacle')
-        ->setEntityLabelInSingular('Obstacle')
-    
-        ->setPageTitle('index', 'Chasse map - Administration des Obstacles')
-        ->setPaginatorPageSize('10');
+            ->setEntityLabelInPlural('Obstacle')
+            ->setEntityLabelInSingular('Obstacle')
+
+            ->setPageTitle('index', 'Chasse map - Administration des Obstacles')
+            ->setPaginatorPageSize('10');
     }
 
 
