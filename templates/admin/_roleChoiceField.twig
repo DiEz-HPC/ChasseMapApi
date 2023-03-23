@@ -1,0 +1,8 @@
+<div>
+	{# {{ dump(entity.instance.roles) }} #}
+	{% if field.formattedValue == 'Administrateur, Membre' %}
+		<span>Administrateur</span>
+	{% elseif field.formattedValue  == 'Membre' %}
+		<span>Membre</span>
+	{% endif %}
+</div>

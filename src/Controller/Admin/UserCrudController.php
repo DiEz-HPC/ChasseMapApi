@@ -4,13 +4,19 @@ namespace App\Controller\Admin;
 
 use App\Entity\User;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
-use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
-use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
-use EasyCorp\Bundle\EasyAdminBundle\Field\ArrayField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
+use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 
 class UserCrudController extends AbstractCrudController
 {
+
+    public const ROLES = [
+        "ROLE_ADMIN" => "Administrateur",
+        "ROLE_MEMBER" => "Member",
+    ];
+
     public static function getEntityFqcn(): string
     {
         return User::class;
@@ -18,12 +24,12 @@ class UserCrudController extends AbstractCrudController
 
     public function configureCrud(Crud $crud): Crud
     {
-        return $crud
-            ->setEntityLabelInPlural('Membres')
-            ->setEntityLabelInSingular('Membres')
+        return Crud::new()
 
-            ->setPageTitle('index', 'Chasse map - Administration des membres')
-            ->setPaginatorPageSize('10');
+            ->overrideTemplates([
+                'crud/field/choice' => 'admin/_roleChoiceField.twig',
+            ])
+            ->setEntityLabelInPlural('Chasse map - Liste des membres');
     }
 
 
@@ -31,9 +37,16 @@ class UserCrudController extends AbstractCrudController
     {
         return [
             IdField::new('id')
-            ->hideOnForm(),
+                ->hideOnForm(),
             TextField::new('email'),
-            ArrayField::new('roles')
+            ChoiceField::new('roles', 'Role du compte')
+                ->setChoices([
+                    "Administrateur" => "ROLE_ADMIN",
+                    "Membre" => "ROLE_USER",
+                ])
+       
+                ->allowMultipleChoices()
+
         ];
     }
 }
