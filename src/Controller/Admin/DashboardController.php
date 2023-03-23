@@ -5,7 +5,6 @@ namespace App\Controller\Admin;
 use App\Entity\POI;
 use App\Entity\User;
 use App\Entity\Hunter;
-use App\Entity\MapAPI;
 use App\Entity\Obstacle;
 use App\Entity\ReportedProblem;
 use Symfony\Component\HttpFoundation\Response;
@@ -38,7 +37,7 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::subMenu('Hunter', 'fa-solid fa-map', Hunter::class)
             ->setSubItems([
                 MenuItem::linkToCrud('Points', 'fas fa-map-marker-alt', Hunter::class),
-                MenuItem::linkToCrud('Maps', 'fas fa-map-marked-alt', MapAPI::class)
+                MenuItem::linkToRoute('Maps', 'fas fa-map-marked-alt', 'app_admin_maps')
             ]);
         yield MenuItem::linkToCrud('Obstacle', 'fa-solid fa-road-barrier', Obstacle::class);
         yield MenuItem::linkToCrud('POI', 'fas fa-list', POI::class);
