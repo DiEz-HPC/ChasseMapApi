@@ -17,6 +17,17 @@ RUN composer install \
     --quiet
 RUN composer require --dev orm-fixtures
 
+FROM node:18.12.1-alpine as nodejs
+
+WORKDIR /app
+
+COPY package.json package.json
+COPY package-lock.json package-lock.json
+
+RUN npm install
+COPY . .
+RUN npm run build
+
 FROM php:8.1-fpm-alpine as phpserver
 
 # add cli tools
@@ -47,6 +58,7 @@ WORKDIR /var/www
 
 COPY . /var/www/
 COPY --from=vendor /app/vendor /var/www/vendor
+COPY --from=nodejs /app/public/build /var/www/public/build
 
 EXPOSE 80
 
