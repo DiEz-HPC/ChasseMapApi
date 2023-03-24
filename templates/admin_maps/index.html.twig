@@ -1,0 +1,17 @@
+{% extends "@EasyAdmin/page/content.html.twig" %}
+
+{% block head_stylesheets %}
+	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin=""/>
+	{{ parent() }}
+	{{ encore_entry_link_tags('adminMapsStyle') }}
+{% endblock %}
+
+
+{% block head_javascript %}
+	{{ parent() }}
+	{{ encore_entry_script_tags('adminMaps') }}
+{% endblock head_javascript %}
+{% block content %}
+
+	<div class="map" id="map"></div>
+{% endblock %}
