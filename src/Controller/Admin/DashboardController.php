@@ -12,15 +12,22 @@ use Symfony\Component\Routing\Annotation\Route;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
-
+use Doctrine\ORM\EntityManagerInterface;
 
 class DashboardController extends AbstractDashboardController
 {
+    public function __construct(public EntityManagerInterface $entityManager)
+    {
+        return $entityManager;
+    }
+    
     #[Route('/admin', name: 'admin')]
     public function index(): Response
     {
-
-        return $this->render('admin/dashboard.html.twig');
+        $entityCount = $this->entityManager->getRepository(Hunter::class)->count([]);
+        return $this->render('admin/dashboard.html.twig',[
+            'entityCount' => $entityCount,
+        ]);
     }
 
     public function configureDashboard(): Dashboard
