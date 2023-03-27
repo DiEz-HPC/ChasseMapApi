@@ -21,13 +21,16 @@ const handleData = async () => {
 const pointeMap = async () => {
   try {
     const data = await handleData();
-    data.forEach(({ latitude, longitude, radius }) => {
+    console.log(data);
+    data.forEach(({ latitude, longitude, radius, type }) => {
       let circle = L.circle([latitude, longitude], {
         color: "red",
         fillColor: "#f03",
         fillOpacity: 0.5,
         radius: radius * 100,
       }).addTo(map);
+
+      circle.bindTooltip(type);
     });
   } catch (error) {
     console.error("Erreur :", error);
@@ -35,7 +38,7 @@ const pointeMap = async () => {
 };
 
 const initMap = () => {
-  map = L.map("map").setView([46.227638, 2.213749], 6);
+  map = L.map("map").setView([46.227638, 2.213749], 5);
 
   L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
     maxZoom: 19,
