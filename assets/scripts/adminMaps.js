@@ -30,7 +30,7 @@ const pointeMap = async () => {
         radius: radius * 100,
       }).addTo(map);
 
-      circle.bindTooltip(type);
+      circle.bindTooltip(type + " - " + radius + "km");
     });
   } catch (error) {
     console.error("Erreur :", error);
