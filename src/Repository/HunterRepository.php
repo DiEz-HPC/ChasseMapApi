@@ -3,9 +3,10 @@
 namespace App\Repository;
 
 use App\Entity\Hunter;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use DateTimeImmutable;
 use Doctrine\Persistence\ManagerRegistry;
-
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use DateTime;
 /**
  * @extends ServiceEntityRepository<Hunter>
  *
@@ -39,28 +40,26 @@ class HunterRepository extends ServiceEntityRepository
         }
     }
 
-//    /**
-//     * @return Hunter[] Returns an array of Hunter objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('h')
-//            ->andWhere('h.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('h.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
 
-//    public function findOneBySomeField($value): ?Hunter
-//    {
-//        return $this->createQueryBuilder('h')
-//            ->andWhere('h.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+    public function findByDate(DateTime $value): array
+    {
+        return $this->createQueryBuilder('d')
+                   ->andWhere('d.date >= :val')
+                   ->setParameter('val', $value)
+                   ->orderBy('d.date', 'ASC')
+                   ->getQuery()
+                    ->getResult();
+
+            
+    }
+
+    //    public function findOneBySomeField($value): ?Hunter
+    //    {
+    //        return $this->createQueryBuilder('h')
+    //            ->andWhere('h.exampleField = :val')
+    //            ->setParameter('val', $value)
+    //            ->getQuery()
+    //            ->getOneOrNullResult()
+    //        ;
+    //    }
 }

@@ -1,9 +1,31 @@
 {% extends "@EasyAdmin/page/content.html.twig" %}
 
+{% block head_javascript %}
+	{{ parent() }}
+	<script>
+		var jsonDates = {{ jsonDates|json_encode|raw }};
+	</script>
+	{{ encore_entry_script_tags('chartJs') }}
+
+{% endblock head_javascript %}
+
 {% block content %}
+
 	<container>
 		<h1>Bienvenue sur votre pannel de statistiques</h1>
 		<p>Nombre de marker sur la carte :
-		<strong>	{{ entityCount }} </strong> </p>
+			{# <strong>	{{ entityCounts }} </strong> </p> #}
+			<canvas id="barCanvas" aria-label="chart" role="img"></canvas>
+		</p>
 	</container>
+
+	<div id="maSuperDiv" 
+
+{#  ont veut save la date, et compter le total par date et le total #}
+
+
+			
+	></div>
+
+
 {% endblock %}
