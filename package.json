@@ -22,6 +22,7 @@
         "build": "encore production --progress"
     },
     "dependencies": {
+        "chart.js": "^4.2.1",
         "leaflet": "^1.9.3"
     }
 }

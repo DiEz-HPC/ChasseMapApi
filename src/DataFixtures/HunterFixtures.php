@@ -2,9 +2,11 @@
 
 namespace App\DataFixtures;
 
+use DateTime;
 use App\Entity\Hunter;
-use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
+use Doctrine\Bundle\FixturesBundle\Fixture;
+use Doctrine\ORM\Query\Expr\Math;
 
 class HunterFixtures extends Fixture
 {
@@ -56,11 +58,15 @@ class HunterFixtures extends Fixture
                 "longitude" => 1.958441734313965
             ]
         ];
-        for ($i = 0; $i < 10; $i++) {
+      
+
+       
+        for ($i = 0; $i < 50; $i++) {
+            $date = new DateTime(rand(1, 7) . 'days');
             $hunter = new Hunter();
-            $hunter->setLatitude($coordonnée[$i]['latitude']);
-            $hunter->setLongitude($coordonnée[$i]['longitude']);
-            $hunter->setDate($faker->dateTime());
+            $hunter->setLatitude($faker->latitude($min = 47, $max = 47));
+            $hunter->setLongitude($faker->longitude($min = 1, $max = 3));
+            $hunter->setDate($date);
             $hunter->setType($faker->randomElement($Type));
             $hunter->setRadius(rand(1, 10));
             $manager->persist($hunter);

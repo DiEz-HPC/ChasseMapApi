@@ -1,5 +1,21 @@
 {% extends "@EasyAdmin/page/content.html.twig" %}
 
+{% block head_javascript %}
+	{{ parent() }}
+	<script>
+		var jsonDates = {{ jsonDates|json_encode|raw }};
+	</script>
+	{{ encore_entry_script_tags('chartJs') }}
+
+{% endblock head_javascript %}
+
 {% block content %}
-	<h1>Bienvenue Admin</h1>
+	<container>
+		<h1>Bienvenue sur votre pannel de statistiques</h1>
+		<p>Nombre de marker sur la carte :
+			{{ countEntity }}
+			<canvas id="barCanvas" aria-label="chart" role="img"></canvas>
+		</p>
+	</container>
+	<div id="maSuperDiv"></div>
 {% endblock %}
