@@ -21,7 +21,6 @@ const handleData = async () => {
 const pointeMap = async () => {
   try {
     const data = await handleData();
-    console.log(data);
     data.forEach(({ latitude, longitude, radius, type }) => {
       let circle = L.circle([latitude, longitude], {
         color: "red",
