@@ -8,16 +8,12 @@ use App\Entity\User;
 use App\Entity\Hunter;
 use App\Entity\Obstacle;
 use App\Entity\ReportedProblem;
-use Doctrine\ORM\Cache\TimestampCacheKey;
 use Doctrine\ORM\EntityManagerInterface;
-use Doctrine\ORM\Mapping\Entity;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\HttpFoundation\RequestStack;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
-use PhpParser\Node\Expr\New_;
 
 class DashboardController extends AbstractDashboardController
 {
@@ -57,8 +53,6 @@ class DashboardController extends AbstractDashboardController
             'entities' => $entities,
             'countEntity' => count($entities),
             'jsonDates' => $jsonDates
-
-
         ]);
     }
 

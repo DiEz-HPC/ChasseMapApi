@@ -3,10 +3,10 @@
 namespace App\Repository;
 
 use App\Entity\Hunter;
-use DateTimeImmutable;
 use Doctrine\Persistence\ManagerRegistry;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use DateTime;
+
 /**
  * @extends ServiceEntityRepository<Hunter>
  *
@@ -44,13 +44,11 @@ class HunterRepository extends ServiceEntityRepository
     public function findByDate(DateTime $value): array
     {
         return $this->createQueryBuilder('d')
-                   ->andWhere('d.date >= :val')
-                   ->setParameter('val', $value)
-                   ->orderBy('d.date', 'ASC')
-                   ->getQuery()
-                    ->getResult();
-
-            
+            ->andWhere('d.date >= :val')
+            ->setParameter('val', $value)
+            ->orderBy('d.date', 'ASC')
+            ->getQuery()
+            ->getResult();
     }
 
     //    public function findOneBySomeField($value): ?Hunter

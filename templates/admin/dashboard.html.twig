@@ -10,22 +10,12 @@
 {% endblock head_javascript %}
 
 {% block content %}
-
 	<container>
 		<h1>Bienvenue sur votre pannel de statistiques</h1>
 		<p>Nombre de marker sur la carte :
-			{# <strong>	{{ entityCounts }} </strong> </p> #}
+			{{ countEntity }}
 			<canvas id="barCanvas" aria-label="chart" role="img"></canvas>
 		</p>
 	</container>
-
-	<div id="maSuperDiv" 
-
-{#  ont veut save la date, et compter le total par date et le total #}
-
-
-			
-	></div>
-
-
+	<div id="maSuperDiv"></div>
 {% endblock %}

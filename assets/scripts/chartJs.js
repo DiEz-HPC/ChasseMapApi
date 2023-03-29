@@ -4,7 +4,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const myDate = initData(window.jsonDates);
   const data = generateData(myDate);
   const barChart = initChart(data);
-  console.log(myDate);
 });
 
 const initData = (json) => {
@@ -12,8 +11,6 @@ const initData = (json) => {
   const data = Object.entries(jsonDates);
   return data;
 };
-
-// Tu boucle et si il manque un jours tu rajoute se jours avec la quantité 0
 
 const generateData = (myDate) => {
   const data = {
@@ -48,21 +45,17 @@ const generateData = (myDate) => {
     ],
   };
 
-  /*  console.log(data.datasets[0]); */
   return data;
 };
 
 const retrieveData = (date) => {
-  // Remplacez cette fonction par le code qui récupère les données associées à chaque date.
   return Math.floor(Math.random() * 1000);
 };
 
 const initChart = (data) => {
   let maxY = 1;
   let dataCounts = data.datasets[0].data;
-  console.log(dataCounts)
-  dataCounts.forEach(element => {
-   console.log(element)
+  dataCounts.forEach((element) => {
     if (element > maxY) {
       maxY = element;
     }
