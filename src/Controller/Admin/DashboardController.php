@@ -52,7 +52,7 @@ class DashboardController extends AbstractDashboardController
         }
         ksort($dateArr);
         $jsonDates = json_encode($dateArr);
-        
+
         return $this->render('admin/dashboard.html.twig', [
             'entities' => $entities,
             'countEntity' => count($entities),
