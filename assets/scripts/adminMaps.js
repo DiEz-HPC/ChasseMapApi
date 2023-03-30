@@ -26,7 +26,7 @@ const pointeMap = async () => {
         color: "red",
         fillColor: "#f03",
         fillOpacity: 0.5,
-        radius: radius * 100,
+        radius: radius * 1000,
       }).addTo(map);
 
       circle.bindTooltip(type + " - " + radius + "km");
