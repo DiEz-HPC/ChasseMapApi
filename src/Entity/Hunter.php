@@ -15,7 +15,7 @@ use App\Model\MarkerInterface;
         'post',
         'handle' => [
             'method' => 'GET',
-            'path' => '/hunters/{lat}/{long}',
+            'path' => '/hunters/{lat}/{long}/{limit}',
             'controller' => MarkerController::class,
             'read' => false,
             'openapi_context' => [
