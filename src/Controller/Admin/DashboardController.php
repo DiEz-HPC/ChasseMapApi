@@ -2,6 +2,7 @@
 
 namespace App\Controller\Admin;
 
+use App\Controller\AdminFixtureController;
 use DateTime;
 use App\Entity\POI;
 use App\Entity\User;
@@ -75,5 +76,9 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Obstacle', 'fa-solid fa-road-barrier', Obstacle::class);
         yield MenuItem::linkToCrud('POI', 'fas fa-list', POI::class);
         yield MenuItem::linkToCrud('Questions-Help', 'fa-solid fa-message', ReportedProblem::class);
+        yield MenuItem::subMenu('Outils', 'fa-solid fa-toolbox', [])
+            ->setSubItems([
+                MenuItem::linkToRoute('Actuallisée les points', 'fa-solid fa-arrows-rotate', 'app_admin_fixture'),
+            ]);
     }
 }
