@@ -2,25 +2,59 @@
 
 namespace App\Controller\Admin;
 
+use App\Controller\AdminFixtureController;
+use DateTime;
 use App\Entity\POI;
 use App\Entity\User;
 use App\Entity\Hunter;
 use App\Entity\Obstacle;
 use App\Entity\ReportedProblem;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
 
-
 class DashboardController extends AbstractDashboardController
 {
+    public function __construct(public EntityManagerInterface $entityManager)
+    {
+
+        return $entityManager;
+    }
+
     #[Route('/admin', name: 'admin')]
     public function index(): Response
     {
 
-        return $this->render('admin/dashboard.html.twig');
+        $entities = $this->entityManager->getRepository(Hunter::class)->findByDate(new DateTime());
+        $dateArr = [];
+
+        foreach ($entities as $entitie) {
+
+            $date = $entitie->getdate()->format('Y-m-d');
+            if (array_key_exists($date, $dateArr)) {
+                $dateArr[$date]++;
+            } else {
+                $dateArr[$date] = 1;
+            }
+        }
+
+        for ($i = 0; $i <= 7; $i++) {
+            $date = (new DateTime())->modify("+$i day")->format('Y-m-d');
+            if (!array_key_exists($date, $dateArr)) {
+                $dateArr += [$date => 0];
+            }
+        }
+        ksort($dateArr);
+        $jsonDates = json_encode($dateArr);
+
+        return $this->render('admin/dashboard.html.twig', [
+            'entities' => $entities,
+            'countEntity' => count($entities),
+            'jsonDates' => $jsonDates
+        ]);
     }
 
     public function configureDashboard(): Dashboard
@@ -42,5 +76,9 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Obstacle', 'fa-solid fa-road-barrier', Obstacle::class);
         yield MenuItem::linkToCrud('POI', 'fas fa-list', POI::class);
         yield MenuItem::linkToCrud('Questions-Help', 'fa-solid fa-message', ReportedProblem::class);
+        yield MenuItem::subMenu('Outils', 'fa-solid fa-toolbox', [])
+            ->setSubItems([
+                MenuItem::linkToRoute('Actuallisée les points', 'fa-solid fa-arrows-rotate', 'app_admin_fixture'),
+            ]);
     }
 }

@@ -22,6 +22,7 @@ Encore
      */
     .addEntry('app', './assets/app.js')
     .addEntry('adminMaps', '/assets/scripts/adminMaps.js')
+    .addEntry('chartJs', '/assets/scripts/chartJs.js')
     .addStyleEntry('adminMapsStyle', './assets/styles/adminMaps.scss')
 
 
