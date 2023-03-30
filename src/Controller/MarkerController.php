@@ -13,11 +13,9 @@ class MarkerController extends AbstractController
     {
     }
     // This method calcul the distance between the user position and the markers position. 
-    public function __invoke($lat, $long)
+    public function __invoke($lat, $long, $limit)
     {
-        // Limit in meters
-        $limit = 50000;
-
+ 
         $markers =  $this->hunterRepository->createQueryBuilder('h')
             ->select('h, ST_Distance_Sphere(POINT(h.latitude, h.longitude), POINT(:lat, :long)) as distance')
             ->where('ST_Distance_Sphere(POINT(h.latitude, h.longitude), POINT(:lat, :long)) < :limit')
