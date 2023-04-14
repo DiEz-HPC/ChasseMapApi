@@ -12,7 +12,7 @@ use App\Model\MarkerInterface;
 #[ORM\Entity(repositoryClass: ObstacleRepository::class)]
 #[ApiResource(
     collectionOperations: ['get', 'post'],
-    itemOperations: ['get'],
+    itemOperations: ['get', 'patch'],
 )]
 class Obstacle implements MarkerInterface
 {
