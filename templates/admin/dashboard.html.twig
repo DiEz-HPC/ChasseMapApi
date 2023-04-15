@@ -1,21 +1,35 @@
 {% extends "@EasyAdmin/page/content.html.twig" %}
 
 {% block head_javascript %}
-	{{ parent() }}
-	<script>
-		var jsonDates = {{ jsonDates|json_encode|raw }};
-	</script>
-	{{ encore_entry_script_tags('chartJs') }}
-
+    {{ parent() }}
+    <script>
+        var jsonDates = {{ jsonDates|json_encode|raw }};
+    </script>
+    {{ encore_entry_script_tags('chartJs') }}
+    {{ encore_entry_script_tags('adminMapsDashboard') }}
 {% endblock head_javascript %}
 
+{% block head_stylesheets %}
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin=""/>
+    {{ parent() }}
+    {{ encore_entry_link_tags('adminMapsStyle') }}
+{% endblock %}
 {% block content %}
-	<container>
-		<h1>Bienvenue sur votre pannel de statistiques</h1>
-		<p>Nombre de marker sur la carte :
-			{{ countEntity }}
-			<canvas id="barCanvas" aria-label="chart" role="img"></canvas>
-		</p>
-	</container>
-	<div id="maSuperDiv"></div>
+    <container>
+        <h1 class="text-center mb-5 mt-3 ">Bienvenue sur votre pannel de statistiques</h1>
+        <div class="row justify-content-around g-0">
+            <section class="sectionStats col-5">
+                <p>Nombre de marker sur la carte :
+                    {{ countEntity }}</p>
+                <canvas id="barCanvas" aria-label="chart" role="img"></canvas>
+            </section>
+            <section class="sectionMap col-5">
+                <button id="btn_hunter" class="hided" data-group="huntersGroup">Chasseurs <i class="fa-regular fa-eye"></i></button>
+                <button id="btn_obstacle" class="hided" data-group="obstaclesGroup">Obstacles <i class="fa-regular fa-eye"></i></button>
+                <div class="map" id="map"></div>
+            </section>
+        </div>
+    </container>
+
+
 {% endblock %}

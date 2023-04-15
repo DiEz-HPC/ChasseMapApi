@@ -1,9 +1,23 @@
 #map {
-  height: 100%;
-  width: 100%;
+    height: 100%;
+    width: 100%;
 }
+.sectionMap {
+    position: relative;
 
+    #btn_hunter, #btn_obstacle {
+        position: absolute;
+        right: 10px;
+        z-index: 1000;
+    }
+    #btn_hunter {
+        top: 5px;
+    }
+    #btn_obstacle {
+        top: 35px;
+    }
+}
 .content-wrapper {
-  padding: 0;
-  min-width: 100%;
+    padding: 0;
+    min-width: 100%;
 }
